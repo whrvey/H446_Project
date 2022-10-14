@@ -1,3 +1,5 @@
 <?php
-    echo 'hi'
+$x = "there";
+echo 'hi',$x;
+
 ?>
