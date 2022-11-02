@@ -24,10 +24,10 @@ function checkEmail($field){
 
 function checkPassword($field ,$minPassLength){
     if (isset($_POST[$field]) and strlen($_POST[$field]) >= $minPassLength ) {
-        $sanField = filter_var($_POST[$field], FILTER_VALIDATE_EMAIL);
+        $sanField = filter_var($_POST[$field], FILTER_SANITIZE_EMAIL);
         console_log($sanField);
         
-        if ($sanField != ""){
+        if ($sanField != ""){ 
 
             return strtolower($sanField);
         } else {
