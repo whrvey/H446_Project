@@ -14,7 +14,7 @@
 		<ul class="menu">
 			<li><a href="./home.php">Home</a></li>
 			<li><a href="./register.php" class="active">Register</a></li>
-			<li><a href="#">Sign In</a></li>
+			<li><a href="./login.php">Sign In</a></li>
 			<li><a href="#">About</a></li>
 		</ul>
 	</nav>

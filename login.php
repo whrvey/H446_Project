@@ -1,0 +1,46 @@
+<?php  include('server.php'); ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Project - Login</title>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+
+<header class="main">
+	<nav>
+	<h1>Project</h1>
+		<ul class="menu">
+			<li><a href="./home.php">Home</a></li>
+			<li><a href="./register.php">Register</a></li>
+			<li><a href="./login.php" class="active">Sign In</a></li>
+			<li><a href="#">About</a></li>
+		</ul>
+	</nav>
+
+	<?php if (isset($_SESSION['message'])): ?>
+		<div class="alert">
+			<?php 
+				echo $_SESSION['message']; 
+				unset($_SESSION['message']);
+			?>
+		</div>
+	<?php endif ?>
+		
+	
+	<div style="text-align:center">
+            <h1>Sign In</h1>
+            <p>Complete the form below to login to your account.</p>
+        <form action="server.php" method="post">
+            <input type="text" name="username" placeholder="Enter your username."/>
+            <input type="password" name="password" placeholder="Enter your password."/>
+            
+            <button type="submit" name="check">Sign In</button>
+        </form>
+	</div>
+	
+</header>
+
+</body>
+</html>

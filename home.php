@@ -12,7 +12,7 @@
 		<ul class="menu">
 			<li><a href="./home.php" class="active">Home</a></li>
 			<li><a href="./register.php">Register</a></li>
-			<li><a href="#">Sign In</a></li>
+			<li><a href="./login.php">Sign In</a></li>
 			<li><a href="#">About</a></li>
 		</ul>
 

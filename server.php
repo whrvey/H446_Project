@@ -37,7 +37,9 @@
 					VALUES('$username', '$hash')";
 					mysqli_query($db, $query);
 
-					$_SESSION['message'] = "Your account has been created successfully!" ; 
+					/*$_SESSION['message'] = "Your account has been created successfully!" ; */
+					$_SESSION['message'] = password_verify("12345678", $hash); 
+					/* 1 = true null = false */
 
 					header('location: register.php');
 
