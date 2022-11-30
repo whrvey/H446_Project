@@ -37,21 +37,21 @@
 					VALUES('$username', '$hash')";
 					mysqli_query($db, $query);
 
-					$_SESSION['message'] = "Account created!" ; 
+					$_SESSION['message'] = "Your account has been created successfully!" ; 
 
 					header('location: register.php');
 
 				} else {
-				$_SESSION['message'] = "Username already exists!"; 
+				$_SESSION['message'] = "Your chosen username already exists! Please choose another one."; 
 				header('location: register.php');
 			}
 				
 			} else {
-				$_SESSION['message'] = "Invalid password. (Must be at least 8 characters.)"; 
+				$_SESSION['message'] = "Your password is invalid. (Must be at least 8 characters.)"; 
 				header('location: register.php');
 			}
 		} else {
-			$_SESSION['message'] = "Invalid email."; 
+			$_SESSION['message'] = "Your email is invalid. Please try again."; 
 			header('location: register.php');
 	}
 }

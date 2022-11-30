@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Project - Home</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
 
@@ -21,6 +21,6 @@
 	<div style="text-align:center">
         <h2>Welcome</h2>
         <p>asjkdbkjsabdjkfb kjndskjfnkjndsjkd nfkjbnd kjsnf knsdkjfn jkdfn.</p>
-
+	</div>	
 </header>
 </html>
