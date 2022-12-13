@@ -37,8 +37,8 @@
 					VALUES('$username', '$hash')";
 					mysqli_query($db, $query);
 
-					/*$_SESSION['message'] = "Your account has been created successfully!" ; */
-					$_SESSION['message'] = password_verify("12345678", $hash); 
+					$_SESSION['message'] = "Your account has been created successfully!" ;
+					/*$_SESSION['message'] = password_verify("12345678", $hash); */
 					/* 1 = true null = false */
 
 					header('location: register.php');
@@ -55,5 +55,28 @@
 		} else {
 			$_SESSION['message'] = "Your email is invalid. Please try again."; 
 			header('location: register.php');
+		}
+	} elseif (isset($_POST['check'])) {
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+
+		$sql = "SELECT * FROM users WHERE username='$username' LIMIT 1";
+		$result = mysqli_query($db, $sql);
+		$row = mysqli_fetch_array($result);
+		$value = $row['password'];
+
+		if (!$value) {
+			$_SESSION['message'] = "User not found.";
+		} else {
+			$verify = password_verify($password, $value);
+			if ($verify == 1) {
+				$_SESSION['message'] = "Password is correct!";
+			} else {
+				$_SESSION['message'] = "Password is incorrect!";
+			}
+		}
+
+		/*$_SESSION['message'] = password_verify($password, $getHash);*/
+		header('location: login.php');
 	}
-}
+	
