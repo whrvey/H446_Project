@@ -64,10 +64,17 @@ nav ul li a:hover{
     background-image: url(./images/bg2.svg);
 }
 
-/* The alert message box */
-.alert{
+/* The alert message boxes */
+.error{
     padding: 20px;
     background-color: #f44336;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.success{
+    padding: 20px;
+    background-color: #29dc44;
     color: white;
     margin-bottom: 15px;
 }

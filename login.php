@@ -19,11 +19,18 @@
 		</ul>
 	</nav>
 
-	<?php if (isset($_SESSION['message'])): ?>
-		<div class="alert">
+	<?php if (isset($_SESSION['successMsg'])): ?>
+		<div class="success">
 			<?php 
-				echo $_SESSION['message'];
-				unset($_SESSION['message']);
+				echo $_SESSION['successMsg'];
+				unset($_SESSION['successMsg']);
+			?>
+		</div>
+	<?php elseif (isset($_SESSION['errorMsg'])): ?>
+		<div class="error">
+			<?php 
+				echo $_SESSION['errorMsg'];
+				unset($_SESSION['errorMsg']);
 			?>
 		</div>
 	<?php endif ?>

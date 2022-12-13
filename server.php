@@ -37,23 +37,23 @@
 					VALUES('$username', '$hash')";
 					mysqli_query($db, $query);
 
-					$_SESSION['message'] = "Your account has been created successfully!" ;
+					$_SESSION['successMsg'] = "Your account has been created successfully!" ;
 					/*$_SESSION['message'] = password_verify("12345678", $hash); */
 					/* 1 = true null = false */
 
 					header('location: register.php');
 
 				} else {
-				$_SESSION['message'] = "Your chosen username already exists! Please choose another one."; 
+				$_SESSION['errorMsg'] = "Your chosen username already exists! Please choose another one."; 
 				header('location: register.php');
 			}
 				
 			} else {
-				$_SESSION['message'] = "Your password is invalid. (Must be at least 8 characters.)"; 
+				$_SESSION['errorMsg'] = "Your password is invalid. (Must be at least 8 characters.)"; 
 				header('location: register.php');
 			}
 		} else {
-			$_SESSION['message'] = "Your email is invalid. Please try again."; 
+			$_SESSION['errorMsg'] = "Your email is invalid. Please try again."; 
 			header('location: register.php');
 		}
 	} elseif (isset($_POST['check'])) {
@@ -66,13 +66,13 @@
 		$value = $row['password'];
 
 		if (!$value) {
-			$_SESSION['message'] = "User not found.";
+			$_SESSION['errorMsg'] = "User not found.";
 		} else {
 			$verify = password_verify($password, $value);
 			if ($verify == 1) {
-				$_SESSION['message'] = "Password is correct!";
+				$_SESSION['successMsg'] = "Your password is correct!";
 			} else {
-				$_SESSION['message'] = "Password is incorrect!";
+				$_SESSION['errorMsg'] = "Your password is incorrect!";
 			}
 		}
 
