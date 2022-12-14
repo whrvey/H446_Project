@@ -1,7 +1,7 @@
 <?php 
-	include_once "../dbase_conn.php";
-	include_once "./validation.php";
-	include_once "./console_log.php";
+	include_once "dbase_conn.php";
+	include_once "validation.php";
+	include_once "console_log.php";
 
 	session_start();
 
@@ -41,20 +41,20 @@
 					/*$_SESSION['message'] = password_verify("12345678", $hash); */
 					/* 1 = true null = false */
 
-					header('location: register.php');
+					header('location: ../client/register.php');
 
 				} else {
 				$_SESSION['errorMsg'] = "Your chosen username already exists! Please choose another one."; 
-				header('location: register.php');
+				header('location: ../client/register.php');
 			}
 				
 			} else {
 				$_SESSION['errorMsg'] = "Your password is invalid. (Must be at least 8 characters.)"; 
-				header('location: register.php');
+				header('location: ../client/register.php');
 			}
 		} else {
 			$_SESSION['errorMsg'] = "Your email is invalid. Please try again."; 
-			header('location: register.php');
+			header('location: ../client/register.php');
 		}
 	} elseif (isset($_POST['check'])) {
 		$username = $_POST['username'];
@@ -77,6 +77,6 @@
 		}
 
 		/*$_SESSION['message'] = password_verify($password, $getHash);*/
-		header('location: login.php');
+		header('location: ../client/login.php');
 	}
 	

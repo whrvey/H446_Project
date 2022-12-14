@@ -1,10 +1,10 @@
-<?php  include('server.php'); ?>
+<?php  include('../server/server.php'); ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Project - Login</title>
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
 
@@ -39,7 +39,7 @@
 	<div style="text-align:center">
             <h1>Sign In</h1>
             <p>Complete the form below to login to your account.</p>
-        <form action="server.php" method="post">
+        <form action="../server/server.php" method="post">
             <input type="text" name="username" placeholder="Enter your username."/>
             <input type="password" name="password" placeholder="Enter your password."/>
             

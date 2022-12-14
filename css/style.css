@@ -61,7 +61,7 @@ nav ul li a:hover{
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url(./images/bg2.svg);
+    background-image: url(../images/bg2.svg);
 }
 
 /* The alert message boxes */

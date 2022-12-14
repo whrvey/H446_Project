@@ -1,6 +1,6 @@
 <?php
 
-include_once "./console_log.php";
+include_once "console_log.php";
 #ref : https://www.phptutorial.net/php-tutorial/php-sanitize-input/
 #ref : https://www.phptutorial.net/php-tutorial/php-filter_input/
 #ref : https://www.php.net/manual/en/filter.filters.php
