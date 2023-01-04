@@ -1,4 +1,6 @@
-<?php  include('../server/server.php'); ?>
+<?php  
+	include('../server/server.php'); 
+?>
 
 <!DOCTYPE html>
 <html>
@@ -17,33 +19,33 @@
 			<li><a href="./login.php" class="active">Sign In</a></li>
 			<li><a href="#">About</a></li>
 		</ul>
-	</nav>
-
-	<?php if (isset($_SESSION['successMsg'])): ?>
-		<div class="success">
-			<?php 
-				echo $_SESSION['successMsg'];
-				unset($_SESSION['successMsg']);
-			?>
-		</div>
-	<?php elseif (isset($_SESSION['errorMsg'])): ?>
-		<div class="error">
-			<?php 
-				echo $_SESSION['errorMsg'];
-				unset($_SESSION['errorMsg']);
-			?>
-		</div>
-	<?php endif ?>
-		
+	</nav>	
 	
 	<div style="text-align:center">
             <h1>Sign In</h1>
-            <p>Complete the form below to login to your account.</p>
+            <p>Complete the form below to sign in to your account.</p>
+			<?php if (isset($_SESSION['successMsg'])): ?>
+				<div class="success">
+					<?php 
+						echo $_SESSION['successMsg'];
+						unset($_SESSION['successMsg']);
+					?>
+				</div>
+			<?php elseif (isset($_SESSION['errorMsg'])): ?>
+				<div class="error">
+					<?php 
+						echo $_SESSION['errorMsg'];
+						unset($_SESSION['errorMsg']);
+					?>
+				</div>
+			<?php endif ?>
         <form action="../server/server.php" method="post">
+			<br>
             <input type="text" name="username" placeholder="Enter your username."/>
+			<br>
             <input type="password" name="password" placeholder="Enter your password."/>
-            
-            <button type="submit" name="check">Sign In</button>
+            <br>
+            <button type="submit" name="check">SIGN IN</button>
         </form>
 	</div>
 	

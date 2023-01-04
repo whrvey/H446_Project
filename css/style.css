@@ -7,6 +7,52 @@ body{
     font-family: 'Raleway', sans-serif;
     background-color: #fff;
 }
+input{
+
+    border-top-style: solid;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    box-sizing: border-box;
+
+    width: 30%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    border-color: rgb(211, 211, 211);
+    border-width: 1px;
+
+    display: block;
+    margin: auto;
+}
+input:focus {
+    outline: none;
+}
+button {
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: hidden;
+
+    border-radius: 5px;
+    border-width: 1px;
+
+    width: 30%;
+    height: 40px;
+
+    letter-spacing: 1px;
+
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    background-color: #c741fc;
+    color: rgb(255, 255, 255);
+    transition: 0.2s ease-in-out;
+}
+button:hover {
+    background-color: #ea83ff;
+    transition: 0.2s ease-in-out;
+    color: #ffffff62;
+}
 h1{
     color: #000000;
 }
@@ -47,6 +93,7 @@ nav ul li a{
 nav ul li a:hover{
     background-color: #ea83ff;
     box-shadow: 5px 10px 30px rgba(245, 106, 245, 0.397);
+    color: #0c0c0c62;
 }
 
 .active{
@@ -66,15 +113,21 @@ nav ul li a:hover{
 
 /* The alert message boxes */
 .error{
-    padding: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 30%;
     background-color: #f44336;
     color: white;
-    margin-bottom: 15px;
+    margin: auto;
+    border-radius: 4px;
 }
 
 .success{
-    padding: 20px;
-    background-color: #29dc44;
+    background-color: #73d973;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 30%;
     color: white;
-    margin-bottom: 15px;
+    margin: auto;
+    border-radius: 4px;
 }

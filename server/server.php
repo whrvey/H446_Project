@@ -71,6 +71,7 @@
 			$verify = password_verify($password, $value);
 			if ($verify == 1) {
 				$_SESSION['successMsg'] = "Your password is correct!";
+				$_SESSION['id'] = $row['id'];
 			} else {
 				$_SESSION['errorMsg'] = "Your password is incorrect!";
 			}

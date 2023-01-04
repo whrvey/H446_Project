@@ -18,32 +18,32 @@
 			<li><a href="#">About</a></li>
 		</ul>
 	</nav>
-
-	<?php if (isset($_SESSION['successMsg'])): ?>
-		<div class="success">
-			<?php 
-				echo $_SESSION['successMsg'];
-				unset($_SESSION['successMsg']);
-			?>
-		</div>
-	<?php elseif (isset($_SESSION['errorMsg'])): ?>
-		<div class="error">
-			<?php 
-				echo $_SESSION['errorMsg'];
-				unset($_SESSION['errorMsg']);
-			?>
-		</div>
-	<?php endif ?>
-		
 	
 	<div style="text-align:center">
             <h1>Register</h1>
             <p>Complete the form below to register an account.</p>
+			<?php if (isset($_SESSION['successMsg'])): ?>
+				<div class="success">
+					<?php 
+						echo $_SESSION['successMsg'];
+						unset($_SESSION['successMsg']);
+					?>
+				</div>
+			<?php elseif (isset($_SESSION['errorMsg'])): ?>
+				<div class="error">
+					<?php 
+						echo $_SESSION['errorMsg'];
+						unset($_SESSION['errorMsg'])
+					?>
+				</div>
+			<?php endif ?>
         <form action="../server/server.php" method="post">
-            <input type="text" name="username" placeholder="Create a username."/>
-            <input type="password" name="password" placeholder="Create a password."/>
-            
-            <button type="submit" name="save">Register</button>
+			<br>
+            <input type="text" name="username" placeholder="Create a username. (Email)"/>
+			<br>
+            <input type="password" name="password" placeholder="Create a password. (8+ characters)"/>
+            <br>
+            <button type="submit" name="save">REGISTER</button>
         </form>
 	</div>
 </header>
