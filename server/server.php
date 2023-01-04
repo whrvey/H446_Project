@@ -13,28 +13,29 @@
 	}
 
 	// initialize variables
-	$username = "";
+	$email = "";
 	$password = "";
 
 	if (isset($_POST['save'])) {
 
-		$username = checkEmail("username");
+		$email = checkEmail("email");
 		$password = checkPassword("password", 8);
 
-		if ($username) {
+		if ($email) {
 			if ($password) {
-				$user_check_query = "SELECT * FROM users WHERE username='$username' 
+
+				$user_check_query = "SELECT * FROM users WHERE username='$email' 
 				LIMIT 1";
 
 				$result = mysqli_query($db, $user_check_query);
 				$user = mysqli_fetch_assoc($result);
+
 				$hash = password_hash($password, PASSWORD_DEFAULT);
 
-				
 				if (!$user) {
 					
-					$query = "INSERT INTO users (username, password) 
-					VALUES('$username', '$hash')";
+					$query = "INSERT INTO users (username, email, password) 
+					VALUES('$username', '$email', '$hash')";
 					mysqli_query($db, $query);
 
 					$_SESSION['successMsg'] = "Your account has been created successfully!" ;
@@ -57,10 +58,10 @@
 			header('location: ../client/register.php');
 		}
 	} elseif (isset($_POST['check'])) {
-		$username = $_POST['username'];
+		$email = $_POST['email'];
 		$password = $_POST['password'];
 
-		$sql = "SELECT * FROM users WHERE username='$username' LIMIT 1";
+		$sql = "SELECT * FROM users WHERE email='$email' LIMIT 1";
 		$result = mysqli_query($db, $sql);
 		$row = mysqli_fetch_array($result);
 		$value = $row['password'];
@@ -71,7 +72,7 @@
 			$verify = password_verify($password, $value);
 			if ($verify == 1) {
 				$_SESSION['successMsg'] = "Your password is correct!";
-				$_SESSION['id'] = $row['id'];
+				$_SESSION['username'] = $row['username'];
 			} else {
 				$_SESSION['errorMsg'] = "Your password is incorrect!";
 			}
