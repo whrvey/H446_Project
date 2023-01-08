@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['username'])) {
 
 	?>
 
@@ -20,7 +20,7 @@ if (isset($_SESSION['id'])) {
 			<ul class="menu">
 				<li><a href="./home.php" class="active">Home</a></li>
 				<li><a href="./register.php">Register</a></li>
-				<li><a href="./login.php">Sign In</a></li>
+				<li><a href="./logout.php">Sign Out</a></li>
 				<li><a href="#">About</a></li>
 			</ul>
 
