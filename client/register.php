@@ -1,4 +1,11 @@
-<?php  include('../server/server.php'); ?>
+<?php  include('../server/server.php'); 
+
+if (isset($_SESSION['username'])) {
+	header('location: ../client/home.php');
+}
+
+?>
+
 
 <!DOCTYPE html>
 <html>

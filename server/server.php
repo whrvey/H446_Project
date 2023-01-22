@@ -3,7 +3,7 @@
 	include_once "validation.php";
 	include_once "console_log.php";
 
-	//session_start();
+	session_start();
 
 	if (! isset($db)) {
 		echo "Warning! Not accessible.";
@@ -13,48 +13,56 @@
 	}
 
 	// initialize variables
+	$username="";
 	$email = "";
 	$password = "";
 
 	if (isset($_POST['save'])) {
 
+		$username = checkUsername("username", 3);
 		$email = checkEmail("email");
 		$password = checkPassword("password", 8);
 
-		if ($email) {
-			if ($password) {
+		if ($username) {
+			if ($email) {
+				if ($password) {
 
-				$user_check_query = "SELECT * FROM users WHERE username='$email' 
-				LIMIT 1";
+					$mail_check_query = "SELECT * FROM users WHERE email='$email' OR username='$username' 
+					LIMIT 1";
 
-				$result = mysqli_query($db, $user_check_query);
-				$user = mysqli_fetch_assoc($result);
+					$result = mysqli_query($db, $mail_check_query);
+					$mail = mysqli_fetch_assoc($result);
 
-				$hash = password_hash($password, PASSWORD_DEFAULT);
+					$hash = password_hash($password, PASSWORD_DEFAULT);
 
-				if (!$user) {
-					
-					$query = "INSERT INTO users (username, email, password) 
-					VALUES('$username', '$email', '$hash')";
-					mysqli_query($db, $query);
 
-					$_SESSION['successMsg'] = "Your account has been created successfully!" ;
-					/*$_SESSION['message'] = password_verify("12345678", $hash); */
-					/* 1 = true null = false */
+					if (!$mail) {
+						
+						$query = "INSERT INTO users (username, email, password) 
+						VALUES('$username', '$email', '$hash')";
+						mysqli_query($db, $query);
 
+						$_SESSION['successMsg'] = "Your account has been created successfully!" ;
+						/*$_SESSION['message'] = password_verify("12345678", $hash); */
+						/* 1 = true null = false */
+
+						header('location: ../client/register.php');
+
+					} else {
+					$_SESSION['errorMsg'] = "Your chosen email or username already exist! Please choose another one."; 
 					header('location: ../client/register.php');
-
+				}
+					
 				} else {
-				$_SESSION['errorMsg'] = "Your chosen username already exists! Please choose another one."; 
-				header('location: ../client/register.php');
-			}
-				
+					$_SESSION['errorMsg'] = "Your password is invalid. (Must be at least 8 characters.)"; 
+					header('location: ../client/register.php');
+				}
 			} else {
-				$_SESSION['errorMsg'] = "Your password is invalid. (Must be at least 8 characters.)"; 
+				$_SESSION['errorMsg'] = "Your email is invalid. Please try again."; 
 				header('location: ../client/register.php');
 			}
 		} else {
-			$_SESSION['errorMsg'] = "Your email is invalid. Please try again."; 
+			$_SESSION['errorMsg'] = "Your username is invalid. (Must be at least 3 characters.)"; 
 			header('location: ../client/register.php');
 		}
 	} elseif (isset($_POST['check'])) {
@@ -80,7 +88,4 @@
 
 		/*$_SESSION['message'] = password_verify($password, $getHash);*/
 		header('location: ../client/login.php');
-	} elseif (isset($_POST['post'])) {
-
 	}
-	
