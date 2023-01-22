@@ -3,7 +3,7 @@
 	include_once "validation.php";
 	include_once "console_log.php";
 
-	session_start();
+	//session_start();
 
 	if (! isset($db)) {
 		echo "Warning! Not accessible.";
@@ -80,5 +80,7 @@
 
 		/*$_SESSION['message'] = password_verify($password, $getHash);*/
 		header('location: ../client/login.php');
+	} elseif (isset($_POST['post'])) {
+
 	}
 	

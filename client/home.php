@@ -1,5 +1,7 @@
 <?php
 
+include('../server/server.php'); 
+
 session_start();
 
 if (isset($_SESSION['username'])) {
@@ -30,6 +32,21 @@ if (isset($_SESSION['username'])) {
 			<h2>Welcome</h2>
 			<p> @ <?php echo $_SESSION['username']; ?> </p>
 		</div>	
+
+		<?php $results = mysqli_query($db, "SELECT * FROM forum_table"); ?>
+
+
+		<div id="container">
+			<table align="center" width="80%">
+				
+				<?php while ($row = mysqli_fetch_array($results)) { ?>
+					<tr>
+						<td><a href="forum.php?id=<?php echo $row["id"]?>"><?php echo $row["name"]?></a></td>
+					</tr>
+				<?php } ?>
+
+			</table>
+
 	</header>
 	</html>
 

@@ -3,7 +3,7 @@
     session_start();
     session_destroy();
 
-    header('location: ../client/register.php');
+    header('location: ../client/login.php');
     exit();
 
 ?>
