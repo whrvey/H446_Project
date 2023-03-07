@@ -2,7 +2,7 @@
 
 include('../server/server.php'); 
 
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['userid'])) {
 
 	?>
 
@@ -19,7 +19,7 @@ if (isset($_SESSION['username'])) {
 		<h1>Project</h1>
 			<ul class="menu">
 				<li><a href="./home.php" class="active">Home</a></li>
-				<li><a href="./register.php">Register</a></li>
+				<li><a href="./create.php">Create</a></li>
 				<li><a href="./logout.php">Sign Out</a></li>
 				<li><a href="#">About</a></li>
 			</ul>
@@ -34,9 +34,11 @@ if (isset($_SESSION['username'])) {
 		<?php $results = mysqli_query($db, "SELECT * FROM forum_table"); ?>
 
 
-		<div id="container">
-			<table align="center" width="80%">
-				
+
+			<table class="styled-table">
+					<tr>
+						<th>Forums</th>
+					</tr>
 				<?php while ($row = mysqli_fetch_array($results)) { ?>
 					<tr>
 						<td><a href="forum.php?id=<?php echo $row["id"]?>"><?php echo $row["name"]?></a></td>

@@ -6,6 +6,7 @@ $username = "harvey";
 $password = "WARDLAW";
 
 // Create connection
+
 $db = new mysqli($servername, $username, $password, "harvey_app");
 
 // Check connection

@@ -2,7 +2,7 @@
 
 include('../server/server.php'); 
 
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['userid'])) {
 
 	?>
 
@@ -19,7 +19,7 @@ if (isset($_SESSION['username'])) {
 		<h1>Project</h1>
 			<ul class="menu">
 				<li><a href="./home.php" class="active">Home</a></li>
-				<li><a href="./register.php">Register</a></li>
+				<li><a href="./create.php">Create</a></li>
 				<li><a href="./logout.php">Sign Out</a></li>
 				<li><a href="#">About</a></li>
 			</ul>
@@ -55,16 +55,20 @@ if (isset($_SESSION['username'])) {
         
         ?>
 
-        <div id="topic_post">
-            <header>
-                <h3><?=$post_title?></h3>
-            </header>
-            <article>
-                <?php echo $post_body ?>
-            </article>
-            <footer>
-                <h4>By: <?=$post_author?></h4>
-            </footer>
+        <div style="text-align:center;">
+            <table class="styled-table">
+                <tr>
+					<th>Posts</th>
+				</tr>
+                <tr>
+                    <td><b><?=$post_title?> • @<?=$post_author?></b></td>
+                </tr>
+                <tr>
+                    <td><?php echo $post_body ?></td>
+                </tr>
+            </table>
+            <br>
+            <!--<button type="submit" name="reply">REPLY</button>-->
         </div>
 
 

@@ -131,3 +131,28 @@ nav ul li a:hover{
     margin: auto;
     border-radius: 4px;
 }
+
+  /* Style the tables */
+table.styled-table {
+    border-collapse: collapse;
+    border-style : hidden;
+    border-radius: 10px;
+    margin:auto;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+
+table.styled-table th {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #c741fc;
+    color: white;
+    padding: 12px 15px;
+  }
+  
+  table.styled-table td {
+    border: 1px solid #dddddd;
+    padding: 12px 15px;
+    text-align: center;
+  }
+

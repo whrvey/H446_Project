@@ -80,12 +80,26 @@
 			$verify = password_verify($password, $value);
 			if ($verify == 1) {
 				$_SESSION['successMsg'] = "Your password is correct!";
+				$_SESSION['userid'] = $row['id'];
 				$_SESSION['username'] = $row['username'];
+				header('location: ../client/home.php');
 			} else {
 				$_SESSION['errorMsg'] = "Your password is incorrect!";
+				header('location: ../client/login.php');
 			}
 		}
+	} elseif (isset($_POST['createpost'])) {
+		$title = $_POST['title'];
+		$message = $_POST['message'];
+		$topic = $_POST['topic'];
+		$userid = $_SESSION['userid'];
+
+		$query = "INSERT INTO forum_post (post_title, post_body, forum_id, post_author) 
+		VALUES('$title', '$message', '$topic', '$userid')";
+		mysqli_query($db, $query);
+
+		header('location: ../client/home.php');
 
 		/*$_SESSION['message'] = password_verify($password, $getHash);*/
-		header('location: ../client/login.php');
+		
 	}
