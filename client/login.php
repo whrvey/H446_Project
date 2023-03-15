@@ -1,7 +1,7 @@
 <?php  
 	include('../server/server.php'); 
 
-	if (isset($_SESSION['username'])) {
+	if (isset($_SESSION['userid'])) {
 		header('location: ../client/home.php');
 	}
 	
