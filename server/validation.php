@@ -28,7 +28,7 @@ function checkPassword($field ,$minPassLength){
         
         if ($sanField != ""){ 
 
-            return strtolower($sanField);
+            return $sanField;
         } else {
             return false;
         }
