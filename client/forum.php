@@ -77,6 +77,7 @@ if (isset($_SESSION['userid'])) {
 								<td><a href="view_post.php?pid=<?= $post_id ?>&id=<?= $id ?>"><?= $post_title ?></a> • @<?= $row["username"] ?></td>
 							</tr>
 						<?php endwhile; ?>
+
 					<?php else: ?>
 						<tr>
 							<td>

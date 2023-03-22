@@ -46,29 +46,67 @@ if (isset($_SESSION['userid'])) {
             $topicPost->bind_result($post_title, $post_body, $post_author);
             $topicPost->execute();
             $topicPost->store_result();
-        } else {
-            echo "ERROR - ".$db->error;
-            exit();
         }
 
         $row = $topicPost->fetch();
+
+        $sql1 = "SELECT post_id, post_body, post_author FROM forum_post WHERE original_id=? AND post_type='r' ORDER BY post_id DESC";
+        if ($query1 = $db->prepare($sql1)) {
+            $query1->bind_param('s', $pid);
+            $query1->bind_result($reply_id, $reply_body, $reply_author);
+            $query1->execute();
+            $query1->store_result();
+
+        }
+
+        $sql2 = "SELECT username FROM users WHERE id=".$post_author;
+				$result = mysqli_query($db, $sql2); 
+				$row = mysqli_fetch_assoc($result);
         
         ?>
+
+        
 
         <div style="text-align:center;">
             <table class="styled-table">
                 <tr>
-					<th>Posts</th>
+					<th>Post</th>
 				</tr>
                 <tr>
-                    <td><b><?=$post_title?> • @<?=$post_author?></b></td>
+                    <td><b><?=$post_title?> • @<?=$row['username']?></b></td>
                 </tr>
                 <tr>
                     <td><?php echo $post_body ?></td>
                 </tr>
+                <tr>
+                <form action="../server/server.php" method="post">
+                    <input type="hidden" name="pid" value="<?php echo $pid; ?>"/>
+                    <input type="hidden" name="fid" value="<?php echo $id; ?>"/>
+                    <td><textarea placeholder="Enter a reply..." rows="2" name="reply-text"></textarea> <br> <button type="submit" name="post-reply">REPLY</button> </td>
+                </form>
+                </tr>
             </table>
             <br>
-            <!--<button type="submit" name="reply">REPLY</button>-->
+            <table class="styled-table">
+            <?php if ($query1->num_rows != 0): ?>
+                <tr>
+					<th>Replies</th>
+				</tr>
+                <?php while ($query1->fetch()): ?>
+                    <tr>                   
+                        <td><?= $reply_body ?> • @<?= $reply_author ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <tr>
+                    <td>
+                        <h4>There are no replies yet...</h4>
+                    </td>
+                </tr>
+            <?php endif; ?>
+            </table>
+
+
         </div>
 
 

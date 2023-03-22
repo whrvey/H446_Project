@@ -96,8 +96,9 @@
 				header('location: ../client/login.php');
 			}
 		}
+	}
 		
-	} elseif (isset($_POST['createpost'])) {
+	if (isset($_POST['createpost'])) {
 		$title = $_POST['title'];
 		$message = $_POST['message'];
 		$topic = $_POST['topic'];
@@ -107,6 +108,27 @@
 		VALUES('$title', '$message', '$topic', '$userid')";
 		mysqli_query($db, $query);
 
-		header('location: ../client/home.php');
+		header('location: ../client/forum.php?id='.$topic.'');
 		
+	} elseif (isset($_POST['post-reply'])) {
+
+		$body = $_POST['reply-text'];
+		$author = $_SESSION['userid'];
+		$pid = $_POST['pid'];
+		$fid = $_POST['fid'];
+		
+		$query = "INSERT INTO forum_post (post_body, post_author, post_type, original_id, forum_id) 
+		VALUES('$body', '$author', 'r', '$pid', '$fid')";
+		mysqli_query($db, $query);
+
+		header('location: ../client/view_post.php?pid='.$pid.'&id='.$fid.'');
+		
+		/*
+
+		$query = "INSERT INTO forum_post (post_body, forum_id, post_author, post_type) 
+		VALUES('$title', '$message', '$topic', '$userid')";
+		mysqli_query($db, $query);
+
+		header('location: ../client/home.php');
+		*/
 	}
