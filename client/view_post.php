@@ -59,9 +59,15 @@ if (isset($_SESSION['userid'])) {
 
         }
 
-        $sql2 = "SELECT username FROM users WHERE id=".$post_author;
-				$result = mysqli_query($db, $sql2); 
-				$row = mysqli_fetch_assoc($result);
+        $sql2 = "SELECT users.id AS 'uid', forum_post.post_id AS 'pid', users.username AS 'username'
+            FROM users, forum_post WHERE users.id = ?";
+
+            $stmt = $db->prepare($sql2);
+            $stmt->bind_param('s', $post_author);
+            $stmt->execute();
+            
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
         
         ?>
 
