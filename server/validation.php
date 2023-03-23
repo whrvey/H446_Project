@@ -22,8 +22,8 @@ function checkEmail($field){
     }
 }
 
-function checkPassword($field ,$minPassLength){
-    if (isset($_POST[$field]) and strlen($_POST[$field]) >= $minPassLength ) {
+function checkPassword($field){
+    if (isset($_POST[$field]) ) {
         $sanField = filter_var($_POST[$field], FILTER_SANITIZE_EMAIL);
         
         if ($sanField != ""){ 
@@ -37,12 +37,26 @@ function checkPassword($field ,$minPassLength){
     }
 }
 
-function checkUsername($field, $minUserLength){
-    if (isset($_POST[$field]) and strlen($_POST[$field]) >= $minUserLength ) {
+function checkUsername($field){
+    if (isset($_POST[$field]) ) {
 
         if ($_POST[$field] != ""){ 
 
             return $_POST[$field];
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+function checkPost($topic){
+    if (isset($_POST[$topic]) ) {
+
+        if ($_POST[$topic] != ""){ 
+
+            return $_POST[$topic];
         } else {
             return false;
         }

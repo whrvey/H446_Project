@@ -28,20 +28,23 @@
 
 	if (isset($_POST['save'])) { // registration
 
-		$username = checkUsername("username", 3); // check username length
+		$username = checkUsername("username"); // check username length
 		if (!$username) {
 			$_SESSION['errorMsg'] = "Your username is invalid. (Must be at least 3 characters.)"; 
 			header('location: ../client/register.php');
+			return;
 		}
 		$email = checkEmail("email"); // check if valid email
 		if (!$email) {
 			$_SESSION['errorMsg'] = "Your email is invalid. Please try again."; 
 			header('location: ../client/register.php');
+			return;
 		}
-		$password = checkPassword("password", 8); // check password length
+		$password = checkPassword("password"); // check password length
 		if (!$password){
 			$_SESSION['errorMsg'] = "Your password is invalid. (Must be at least 8 characters.)"; 
 			header('location: ../client/register.php');
+			return;
 		}
 
 		// validation checks complete
@@ -82,7 +85,6 @@
 				} else {
 					$verify = password_verify($password, $value); // check hash with password input
 					if ($verify == 1) {
-						$_SESSION['successMsg'] = "Your password is correct!";
 						$_SESSION['userid'] = $row['id'];
 						$_SESSION['username'] = $row['username'];
 						header('location: ../client/home.php');
@@ -103,6 +105,12 @@
 		$message = $_POST['message'];
 		$topic = $_POST['topic'];
 		$userid = $_SESSION['userid'];
+
+		if (!$verify) {
+			$_SESSION['errorMsg'] = "You did not include a topic for your post.";
+			header('location: ../client/create.php');
+			return;
+		}
 
 		$query = "INSERT INTO forum_post (post_title, post_body, forum_id, post_author) 
 		VALUES('$title', '$message', '$topic', '$userid')";

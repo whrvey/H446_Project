@@ -21,7 +21,7 @@ input{
     border-radius: 5px;
     border-color: rgb(211, 211, 211);
     border-width: 1px;
-
+    
     display: block;
     margin: auto;
 }
@@ -164,8 +164,11 @@ table.styled-table {
     border-style : hidden;
     border-radius: 10px;
     margin:auto;
-    min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    table-layout: fixed;
+    max-width: 30%;
+    width: 30%;
+    min-width: 30%;
   }
 
 table.styled-table th {
@@ -174,12 +177,15 @@ table.styled-table th {
     background-color: #c741fc;
     color: white;
     padding: 12px 15px;
+
   }
   
   table.styled-table td {
     border: 1px solid #dddddd;
     padding: 12px 15px;
     text-align: center;
+
+    
   }
   form.comment_reply{
     display: none;

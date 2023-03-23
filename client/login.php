@@ -46,9 +46,9 @@
 			<?php endif ?>
         <form action="../server/server.php" method="post">
 			<br>
-            <input type="text" name="email" placeholder="Enter your email."/>
+            <input required type="text" name="email" placeholder="Enter your email."/>
 			<br>
-            <input type="password" name="password" placeholder="Enter your password."/>
+            <input required type="password" name="password" placeholder="Enter your password."/>
             <br>
             <button type="submit" name="check">SIGN IN</button>
         </form>

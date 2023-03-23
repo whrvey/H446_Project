@@ -88,7 +88,7 @@ if (isset($_SESSION['userid'])) {
                 <form action="../server/server.php" method="post">
                     <input type="hidden" name="pid" value="<?php echo $pid; ?>"/>
                     <input type="hidden" name="fid" value="<?php echo $id; ?>"/>
-                    <td><textarea placeholder="Enter a reply..." rows="2" name="reply-text"></textarea> <br> <button type="submit" name="post-reply">REPLY</button> </td>
+                    <td><textarea placeholder="Enter a reply..." required minlength="2" maxlength="40" rows="2" name="reply-text"></textarea> <br> <button type="submit" name="post-reply">REPLY</button> </td>
                 </form>
                 </tr>
             </table>

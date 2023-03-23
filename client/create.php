@@ -27,13 +27,28 @@
 		<div style="text-align:center">
 				<h1>Create a post</h1>
 				<p>Complete the form below to create a post in a designated forum.</p>
+				<?php if (isset($_SESSION['successMsg'])): ?>
+				<div class="success">
+					<?php 
+						echo $_SESSION['successMsg'];
+						unset($_SESSION['successMsg']);
+					?>
+				</div>
+			<?php elseif (isset($_SESSION['errorMsg'])): ?>
+				<div class="error">
+					<?php 
+						echo $_SESSION['errorMsg'];
+						unset($_SESSION['errorMsg']);
+					?>
+				</div>
+			<?php endif ?>
 			<form action="../server/server.php" method="post">
 				<br>
-				<input type="text" name="title" placeholder="Enter a title."/>
+				<input type="text" pattern=".{2,50}" required title="2 characters minimum." name="title" placeholder="Enter a title."/>
 				<br>
-				<input type="text" name="message" placeholder="Enter some text."/>
+				<textarea style="  width: 30%;height: 100px;" required minlength="2" maxlength="255" name="message" placeholder="Enter your message."></textarea>
 				<br>
-				<select name="topic" id="topic"style="   border-top-style: solid;border-right-style: solid;border-left-style: solid;border-bottom-style: solid;box-sizing: border-box;width: 30%;height: 40px;padding: 10px;border-radius: 5px;border-color: rgb(211, 211, 211);border-width: 1px;display: block;margin: auto;">
+				<select required name="topic" id="topic"style="   border-top-style: solid;border-right-style: solid;border-left-style: solid;border-bottom-style: solid;box-sizing: border-box;width: 30%;height: 40px;padding: 10px;border-radius: 5px;border-color: rgb(211, 211, 211);border-width: 1px;display: block;margin: auto;">
 					<option value="" disabled selected>Choose a topic.</option>
 					<?php $results = mysqli_query($db, "SELECT * FROM forum_table"); ?>
 					<?php while ($row = mysqli_fetch_array($results)) { ?>

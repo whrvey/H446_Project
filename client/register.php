@@ -46,11 +46,11 @@ if (isset($_SESSION['username'])) {
 			<?php endif ?>
         <form action="../server/server.php" method="post">
 			<br>
-            <input type="text" name="username" placeholder="Create a unique username."/>
+            <input pattern=".{3,}" required title="3 characters minimum." type="text" name="username" placeholder="Create a unique username."/>
 			<br>
-            <input type="text" name="email" placeholder="Enter your email."/>
+            <input required type="text" name="email" placeholder="Enter your email."/>
 			<br>
-            <input type="password" name="password" placeholder="Create a password. (8+ characters)"/>
+            <input pattern=".{8,}" required title="8 characters minimum." type="password" name="password" placeholder="Create a password."/>
             <br>
             <button type="submit" name="save">REGISTER</button>
         </form>
