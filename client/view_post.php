@@ -50,10 +50,10 @@ if (isset($_SESSION['userid'])) {
 
         $row = $topicPost->fetch();
 
-        $sql1 = "SELECT post_id, post_body, post_author FROM forum_post WHERE original_id=? AND post_type='r' ORDER BY post_id DESC";
+        $sql1 = "SELECT forum_post.post_id, forum_post.post_body, forum_post.post_author, users.username FROM forum_post, users WHERE forum_post.original_id=? AND forum_post.post_type='r' AND forum_post.post_author = users.id ORDER BY post_id DESC";
         if ($query1 = $db->prepare($sql1)) {
             $query1->bind_param('s', $pid);
-            $query1->bind_result($reply_id, $reply_body, $reply_author);
+            $query1->bind_result($reply_id, $reply_body, $reply_author, $reply_username);
             $query1->execute();
             $query1->store_result();
 
@@ -100,7 +100,7 @@ if (isset($_SESSION['userid'])) {
 				</tr>
                 <?php while ($query1->fetch()): ?>
                     <tr>                   
-                        <td><?= $reply_body ?> • @<?= $reply_author ?></td>
+                        <td><?= $reply_body ?> • @<?= $reply_username ?></td>
                     </tr>
                 <?php endwhile; ?>
             <?php else: ?>
