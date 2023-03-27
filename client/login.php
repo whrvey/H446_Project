@@ -46,7 +46,7 @@
 			<?php endif ?>
         <form action="../server/server.php" method="post">
 			<br>
-            <input required type="text" name="email" placeholder="Enter your email."/>
+            <input required type="text" name="username" placeholder="Enter your username."/>
 			<br>
             <input required type="password" name="password" placeholder="Enter your password."/>
             <br>

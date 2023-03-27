@@ -70,10 +70,10 @@
 				
 			
 	if (isset($_POST['check'])) { // login
-		$email = $_POST['email'];
+		$username = $_POST['username'];
 		$password = $_POST['password'];
 
-		$sql = "SELECT * FROM users WHERE email='$email' LIMIT 1"; // get password hash from database
+		$sql = "SELECT * FROM users WHERE username='$username' LIMIT 1"; // get password hash from database
 		$result = mysqli_query($db, $sql);
 		$row = mysqli_fetch_array($result);
 		$value = $row['password'];
@@ -94,7 +94,7 @@
 					}
 				}
 			} else {
-				$_SESSION['errorMsg'] = "Your email is not valid!";
+				$_SESSION['errorMsg'] = "Your username is not valid!";
 				header('location: ../client/login.php');
 			}
 		}
@@ -106,7 +106,7 @@
 		$topic = $_POST['topic'];
 		$userid = $_SESSION['userid'];
 
-		if (!$verify) {
+		if (!$topic) {
 			$_SESSION['errorMsg'] = "You did not include a topic for your post.";
 			header('location: ../client/create.php');
 			return;
@@ -139,4 +139,24 @@
 
 		header('location: ../client/home.php');
 		*/
+	} elseif (isset($_POST['post-delete'])) {
+		$pid = $_POST['pid'];
+		$userid = $_SESSION['userid'];
+
+		$query = "SELECT post_author, forum_id, original_id FROM forum_post WHERE post_author='$userid' AND post_id='$pid'";
+		$result = mysqli_query($db, $query);
+		$row = mysqli_fetch_array($result);
+
+		if ($row['post_author']===$userid) {
+			$query = "DELETE FROM forum_post WHERE post_author='$userid' AND post_id='$pid'";
+			mysqli_query($db, $query);
+		}
+
+		if ($row['original_id']) { # check if original id exits (if so, this means the post is a reply)
+			header('location: ../client/view_post.php?pid='.$row['original_id'].'&id='.$row['forum_id'].'');
+		} else {
+			header('location: ../client/forum.php?id='.$row['forum_id'].'');
+		}
+		
+		
 	}

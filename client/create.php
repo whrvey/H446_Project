@@ -47,6 +47,8 @@
 				<input type="text" pattern=".{2,50}" required title="2 characters minimum." name="title" placeholder="Enter a title."/>
 				<br>
 				<textarea style="  width: 30%;height: 100px;" required minlength="2" maxlength="255" name="message" placeholder="Enter your message."></textarea>
+				
+				<!-- <input type="file" name="file"/> -->
 				<br>
 				<select required name="topic" id="topic"style="   border-top-style: solid;border-right-style: solid;border-left-style: solid;border-bottom-style: solid;box-sizing: border-box;width: 30%;height: 40px;padding: 10px;border-radius: 5px;border-color: rgb(211, 211, 211);border-width: 1px;display: block;margin: auto;">
 					<option value="" disabled selected>Choose a topic.</option>

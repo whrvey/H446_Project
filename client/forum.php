@@ -69,13 +69,24 @@ if (isset($_SESSION['userid'])) {
 						</tr>
 						<?php while ($query->fetch()):
 
-							$sql2 = "SELECT username FROM users WHERE id=".$post_author;
-							$result = mysqli_query($db, $sql2); 
-							$row = mysqli_fetch_assoc($result) ?>
+							$sql2 = "SELECT username FROM users WHERE id=" . $post_author;
+							$result = mysqli_query($db, $sql2);
+							$row = mysqli_fetch_assoc($result);
+							$sameUser = false;
 
-							<tr>
-								<td><a href="view_post.php?pid=<?= $post_id ?>&id=<?= $id ?>"><?= $post_title ?></a> • @<?= $row["username"] ?></td>
-							</tr>
+							if ($_SESSION['username'] === $row['username']) {
+								$sameUser = true;
+							} ?>
+							<form action="../server/server.php" method="post">
+								<tr>
+									<td><a href="view_post.php?pid=<?= $post_id ?>&id=<?= $id ?>"><?= $post_title ?></a> • @<?= $row["username"] ?>
+										<?php if ($sameUser) {
+											?> <input type="hidden" name="pid" value="<?php echo $post_id; ?>"/>  <?php
+											echo '<button class="mini" name="post-delete" type="submit">DELETE</button>';
+										} ?>
+									</td>
+								</tr>
+							</form>
 						<?php endwhile; ?>
 
 					<?php else: ?>

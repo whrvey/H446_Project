@@ -98,10 +98,20 @@ if (isset($_SESSION['userid'])) {
                 <tr>
 					<th>Replies</th>
 				</tr>
-                <?php while ($query1->fetch()): ?>
-                    <tr>                   
-                        <td><?= $reply_body ?> • @<?= $reply_username ?></td>
-                    </tr>
+                <?php while ($query1->fetch()): 
+                    if ($_SESSION['username'] === $reply_username) {
+						$sameUser = true;
+					} ?>
+                    <form action="../server/server.php" method="post">
+                        <tr>                   
+                            <td><?= $reply_body ?> • @<?= $reply_username ?>
+                                <?php if ($sameUser) {
+                                    ?> <input type="hidden" name="pid" value="<?php echo $reply_id; ?>"/> <?php
+                                    echo '<button class="mini" name="post-delete" type="submit">DELETE</button>';
+                                } ?>
+                            </td>
+                        </tr>
+                    </form>
                 <?php endwhile; ?>
             <?php else: ?>
                 <tr>

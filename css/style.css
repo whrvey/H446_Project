@@ -79,6 +79,11 @@ button:hover {
     transition: 0.2s ease-in-out;
     color: #ffffff62;
 }
+button.mini {
+    width: 20%;
+    height: 20px;
+    float: right;
+}
 h1{
     color: #000000;
 }
