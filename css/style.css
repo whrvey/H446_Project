@@ -21,10 +21,12 @@ input{
     border-radius: 5px;
     border-color: rgb(211, 211, 211);
     border-width: 1px;
+    background-color: white;
     
     display: block;
     margin: auto;
 }
+
 input:focus {
     outline: none;
 }
@@ -43,8 +45,7 @@ textarea{
     border-color: rgb(211, 211, 211);
     border-width: 1px;
 
-    font-family: 'Raleway', sans-serif;
-    font-size: small;
+    font-family: 'Arial';
 
     resize: none;
 

@@ -106,15 +106,50 @@
 		$topic = $_POST['topic'];
 		$userid = $_SESSION['userid'];
 
+		$imageId = null;
+
+		# file handling
+
+		if (!empty($_FILES["file"]["name"])) {
+		
+			$file = $_FILES['file'];
+			$fileName = $_FILES['file']['name'];
+			$fileTempName = $_FILES['file']['tmp_name'];
+
+			$fileExt = explode('.',$fileName);
+			$fileActualExt = strtolower(end($fileExt));
+			$allowExt = array('jpg','png','jpeg','gif','pdf');
+
+			$fileNameNew = $userid."-".uniqid().".".$fileActualExt;
+			$fileDestination = '../uploads/'.$fileNameNew;
+
+			if(!in_array($fileActualExt, $allowExt)){
+				$_SESSION['errorMsg'] = "Only JPG, JPEG, PNG, GIF, & PDF files are allowed.";
+				header('location: ../client/create.php');
+				return;
+			}
+
+			if ($_FILES["file"]["size"] > 10000000) { #10,000,000
+				$_SESSION['errorMsg'] = "File is too large (Over 50 MB).";
+				header('location: ../client/create.php');
+				return;
+			}
+			
+			if(!move_uploaded_file($fileTempName, $fileDestination)) {
+				echo "Not uploaded because of error #".$_FILES["file"]["error"];
+				return;
+			}
+		}
+
 		if (!$topic) {
 			$_SESSION['errorMsg'] = "You did not include a topic for your post.";
 			header('location: ../client/create.php');
 			return;
 		}
 
-		$query = "INSERT INTO forum_post (post_title, post_body, forum_id, post_author) 
-		VALUES('$title', '$message', '$topic', '$userid')";
-		mysqli_query($db, $query);
+		$postQuery = "INSERT INTO forum_post (post_title, post_body, forum_id, post_author, file_name) 
+		VALUES('$title', '$message', '$topic', '$userid', '$fileNameNew')";
+		mysqli_query($db, $postQuery);
 
 		header('location: ../client/forum.php?id='.$topic.'');
 		
@@ -143,7 +178,7 @@
 		$pid = $_POST['pid'];
 		$userid = $_SESSION['userid'];
 
-		$query = "SELECT post_author, forum_id, original_id FROM forum_post WHERE post_author='$userid' AND post_id='$pid'";
+		$query = "SELECT post_author, forum_id, original_id, file_name FROM forum_post WHERE post_author='$userid' AND post_id='$pid'";
 		$result = mysqli_query($db, $query);
 		$row = mysqli_fetch_array($result);
 
@@ -152,11 +187,15 @@
 			mysqli_query($db, $query);
 		}
 
+		if ($row['file_name']) { # delete file from uploads folder to prevent memory leak
+			$file_name = $row['file_name'];
+			unlink("../uploads/".$file_name);
+		}
+
 		if ($row['original_id']) { # check if original id exits (if so, this means the post is a reply)
 			header('location: ../client/view_post.php?pid='.$row['original_id'].'&id='.$row['forum_id'].'');
 		} else {
 			header('location: ../client/forum.php?id='.$row['forum_id'].'');
 		}
-		
 		
 	}

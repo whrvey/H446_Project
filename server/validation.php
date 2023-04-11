@@ -7,11 +7,12 @@ include_once "console_log.php";
 #ref : https://www.php.net/manual/en/function.password-hash.php
 #ref : https://www.w3schools.com/php/func_string_strtolower.asp
 
-function checkEmail($field){
+function checkEmail($field)
+{
     if (isset($_POST[$field])) {
         $sanField = filter_var($_POST[$field], FILTER_VALIDATE_EMAIL);
-        
-        if ($sanField != ""){
+
+        if ($sanField != "") {
 
             return strtolower($sanField);
         } else {
@@ -22,11 +23,12 @@ function checkEmail($field){
     }
 }
 
-function checkPassword($field){
-    if (isset($_POST[$field]) ) {
+function checkPassword($field)
+{
+    if (isset($_POST[$field])) {
         $sanField = filter_var($_POST[$field], FILTER_SANITIZE_EMAIL);
-        
-        if ($sanField != ""){ 
+
+        if ($sanField != "") {
 
             return $sanField;
         } else {
@@ -37,10 +39,11 @@ function checkPassword($field){
     }
 }
 
-function checkUsername($field){
-    if (isset($_POST[$field]) ) {
+function checkUsername($field)
+{
+    if (isset($_POST[$field])) {
 
-        if ($_POST[$field] != ""){ 
+        if ($_POST[$field] != "") {
 
             return $_POST[$field];
         } else {
@@ -51,10 +54,11 @@ function checkUsername($field){
     }
 }
 
-function checkPost($topic){
-    if (isset($_POST[$topic]) ) {
+function checkPost($topic)
+{
+    if (isset($_POST[$topic])) {
 
-        if ($_POST[$topic] != ""){ 
+        if ($_POST[$topic] != "") {
 
             return $_POST[$topic];
         } else {
