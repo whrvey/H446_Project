@@ -111,7 +111,6 @@
 		# file handling
 
 		if (!empty($_FILES["file"]["name"])) {
-		
 			$file = $_FILES['file'];
 			$fileName = $_FILES['file']['name'];
 			$fileTempName = $_FILES['file']['tmp_name'];
@@ -150,6 +149,7 @@
 		$postQuery = "INSERT INTO forum_post (post_title, post_body, forum_id, post_author, file_name) 
 		VALUES('$title', '$message', '$topic', '$userid', '$fileNameNew')";
 		mysqli_query($db, $postQuery);
+
 
 		header('location: ../client/forum.php?id='.$topic.'');
 		

@@ -79,7 +79,7 @@ if (isset($_SESSION['userid'])) {
 							} ?>
 							<form action="../server/server.php" method="post">
 								<tr>
-									<td><a href="view_post.php?pid=<?= $post_id ?>&id=<?= $id ?>"><?= $post_title ?></a> • @<?= $row["username"] ?>
+									<td><a href="view_post.php?pid=<?= $post_id ?>&id=<?= $id ?>"><?= $post_title ?></a> • <a href=profile.php?id=<?=$post_author?>>@<?= $row["username"]?></a>
 										<?php if ($sameUser) {
 											?> <input type="hidden" name="pid" value="<?php echo $post_id; ?>"/>  <?php
 											echo '<button class="mini" name="post-delete" type="submit">DELETE</button>';

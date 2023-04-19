@@ -82,7 +82,7 @@ if (isset($_SESSION['userid'])) {
                     </tr>
                     <tr>
                         <td><b>
-                                <?= $post_title ?> • @<?= $row['username'] ?>
+                                <?= $post_title ?> • <a href=profile.php?id=<?=$post_author?>>@<?= $row["username"]?></a>
                             </b></td>
                     </tr>
                     <tr>
@@ -129,7 +129,7 @@ if (isset($_SESSION['userid'])) {
                             <form action="../server/server.php" method="post">
                                 <tr>
                                     <td>
-                                        <?= $reply_body ?> • @<?= $reply_username ?>
+                                        <?= $reply_body ?> • <a href=profile.php?id=<?=$reply_author?>>@<?= $reply_username?></a>
                                         <?php if ($sameUser) {
                                             ?> <input type="hidden" name="pid" value="<?php echo $reply_id; ?>" /> <?php
                                                 echo '<button class="mini" name="post-delete" type="submit">DELETE</button>';

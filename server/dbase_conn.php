@@ -2,8 +2,8 @@
 # Ref : https://www.w3schools.com/php/php_mysql_connect.asp
 
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "harvey";
+$password = "wardlaw";
 
 // Create connection
 
