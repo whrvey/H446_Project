@@ -27,8 +27,7 @@ if (isset($_SESSION['userid'])) {
 		</nav>
 
 		<div style="text-align:center">
-			<h2>Welcome</h2>
-			<p> @ <?php echo $_SESSION['username']; ?> </p>
+			<h2>Welcome, <?php echo $_SESSION['username']?>.</h2>
 		</div>	
 
 		<?php $results = mysqli_query($db, "SELECT * FROM forum_table"); ?>

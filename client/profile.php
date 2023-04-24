@@ -54,7 +54,7 @@ if (isset($_SESSION['userid'])) {
             $postResult = $postQuery->get_result();
             ?>
 
-            <h2 style="text-align: center;"><?php echo ($row['username']); ?></h2>
+            <h2 style="text-align: center;">Account: <?php echo ($row['username']); ?></h2>
 
 
             <div style="text-align:center;">
@@ -68,11 +68,18 @@ if (isset($_SESSION['userid'])) {
                             $usernameQuery = "SELECT username FROM users WHERE id=" . $postRow["post_author"];
 							$usernameResult = mysqli_query($db, $usernameQuery);
 							$usernameRow = mysqli_fetch_assoc($usernameResult);
+
+                            $postTitle = $postRow["post_title"];
+
+                            if($postTitle === null){
+                                $postTitle = "Reply";
+                                $postRow["post_id"] = $postRow['original_id'];
+                            }
                             
                             ?>
                             <tr>
                                 <td>
-                                    <a href="view_post.php?pid=<?= $postRow["post_id"] ?>&id=<?= $postRow["forum_id"] ?>"><?= $postRow["post_title"] ?></a> • <a href=profile.php?id=<?=$postRow["post_author"]?>>@<?= $usernameRow["username"]?></a>
+                                    <a href="view_post.php?pid=<?= $postRow["post_id"] ?>&id=<?= $postRow["forum_id"] ?>"><?= $postTitle ?></a> • <a href=profile.php?id=<?=$postRow["post_author"]?>>@<?= $usernameRow["username"]?></a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>
