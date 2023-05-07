@@ -165,6 +165,12 @@ nav ul li a:hover{
 }
 
   /* Style the tables */
+  .scrolling-frame {
+    overflow-x: auto; /* horizontal */
+    overflow-y: scroll; /* vertical */
+    max-height: 500px;
+  }
+  
 table.styled-table {
     border-collapse: collapse;
     border-style : hidden;

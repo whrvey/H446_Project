@@ -72,7 +72,7 @@ if (isset($_SESSION['userid'])) {
 
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
-            
+
             ?>
 
             <div style="text-align:center;">
@@ -82,7 +82,7 @@ if (isset($_SESSION['userid'])) {
                     </tr>
                     <tr>
                         <td><b>
-                                <?= $post_title ?> • <a href=profile.php?id=<?=$post_author?>>@<?= $row["username"]?></a>
+                                <?= $post_title ?> • <a href=profile.php?id=<?= $post_author ?>>@<?= $row["username"] ?></a>
                             </b></td>
                     </tr>
                     <tr>
@@ -90,19 +90,11 @@ if (isset($_SESSION['userid'])) {
                             <?php echo $post_body; ?>
                         </td>
                     </tr>
-                    <?php if($file_name){  
-                        $fileExt = explode('.',$file_name);
-                        $fileActualExt = strtolower(end($fileExt));
-                        $allowExt = array('jpg','png','jpeg','gif'); 
-                        $fileURL = '../uploads/'.$file_name; ?>
+                    <?php if ($file_name) {
+                        $fileURL = '../uploads/' . $file_name; ?>
                         <tr>
                             <td>
-                                <?php if(in_array($fileActualExt, $allowExt)){ ?>
-                                    
-                                    <img src="<?php echo $fileURL; ?>" alt="" width="400px"  />
-                                <?php } else { ?>
-                                    <a href="<?php echo $fileURL; ?>"><?php echo $file_name ?></a>
-                                <?php } ?>
+                                <img src="<?php echo $fileURL; ?>" alt="" width="400px" />
                             </td>
                         </tr>
                     <?php } ?>
@@ -129,11 +121,12 @@ if (isset($_SESSION['userid'])) {
                             <form action="../server/server.php" method="post">
                                 <tr>
                                     <td>
-                                        <?= $reply_body ?> • <a href=profile.php?id=<?=$reply_author?>>@<?= $reply_username?></a>
+                                        <?= $reply_body ?> • <a href=profile.php?id=<?= $reply_author ?>>@<?= $reply_username ?></a>
                                         <?php if ($sameUser) {
-                                            ?> <input type="hidden" name="pid" value="<?php echo $reply_id; ?>" /> <?php
+                                            ?> <input type="hidden" name="pid" value="<?php echo $reply_id; ?>" />
+                                            <?php
                                                 echo '<button class="mini" name="post-delete" type="submit">DELETE</button>';
-                                        } ?>
+                                            } ?>
                                     </td>
                                 </tr>
                             </form>
@@ -149,7 +142,7 @@ if (isset($_SESSION['userid'])) {
             </div>
 
 
-<?php
+            <?php
 
 
 } else {

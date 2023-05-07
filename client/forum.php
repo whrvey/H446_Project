@@ -61,43 +61,46 @@ if (isset($_SESSION['userid'])) {
 				</h2>
 				<?= $row->description ?>
 				<br></br>
-				<table class="styled-table">
+				<div class="scrolling-frame">
+					<table class="styled-table">
 
-					<?php if ($query->num_rows != 0): ?>
-						<tr>
-							<th>Posts</th>
-						</tr>
-						<?php while ($query->fetch()):
+						<?php if ($query->num_rows != 0): ?>
+							<tr>
+								<th>Posts</th>
+							</tr>
+							<?php while ($query->fetch()):
 
-							$sql2 = "SELECT username FROM users WHERE id=" . $post_author;
-							$result = mysqli_query($db, $sql2);
-							$row = mysqli_fetch_assoc($result);
-							$sameUser = false;
+								$sql2 = "SELECT username FROM users WHERE id=" . $post_author;
+								$result = mysqli_query($db, $sql2);
+								$row = mysqli_fetch_assoc($result);
+								$sameUser = false;
 
-							if ($_SESSION['username'] === $row['username']) {
-								$sameUser = true;
-							} ?>
-							<form action="../server/server.php" method="post">
-								<tr>
-									<td><a href="view_post.php?pid=<?= $post_id ?>&id=<?= $id ?>"><?= $post_title ?></a> • <a href=profile.php?id=<?=$post_author?>>@<?= $row["username"]?></a>
-										<?php if ($sameUser) {
-											?> <input type="hidden" name="pid" value="<?php echo $post_id; ?>"/>  <?php
-											echo '<button class="mini" name="post-delete" type="submit">DELETE</button>';
-										} ?>
-									</td>
-								</tr>
-							</form>
-						<?php endwhile; ?>
+								if ($_SESSION['username'] === $row['username']) {
+									$sameUser = true;
+								} ?>
+								<form action="../server/server.php" method="post">
+									<tr>
+										<td><a href="view_post.php?pid=<?= $post_id ?>&id=<?= $id ?>"><?= $post_title ?></a> •
+										<a href=profile.php?id=<?=$post_author?>>@<?= $row["username"]?></a>
+											<?php if ($sameUser) {
+												?> <input type="hidden" name="pid" value="<?php echo $post_id; ?>"/>  <?php
+												echo '<button class="mini" name="post-delete" type="submit">DELETE</button>';
+											} ?>
+										</td>
+									</tr>
+								</form>
+							<?php endwhile; ?>
 
-					<?php else: ?>
-						<tr>
-							<td>
-								<h2>No Posts Found</h2>
-							</td>
-						</tr>
-					<?php endif; ?>
+						<?php else: ?>
+							<tr>
+								<td>
+									<h2>No Posts Found</h2>
+								</td>
+							</tr>
+						<?php endif; ?>
 
-				</table>
+					</table>
+				</div>
 			</div>
 
 			<?php

@@ -117,19 +117,20 @@
 
 			$fileExt = explode('.',$fileName);
 			$fileActualExt = strtolower(end($fileExt));
-			$allowExt = array('jpg','png','jpeg','gif','pdf');
+			echo($fileActualExt);
+			$allowExt = array('jpg','png','jpeg','gif','pdf','doc','docx','ppt', 'pptx', 'pptm',);
 
 			$fileNameNew = $userid."-".uniqid().".".$fileActualExt;
 			$fileDestination = '../uploads/'.$fileNameNew;
 
 			if(!in_array($fileActualExt, $allowExt)){
-				$_SESSION['errorMsg'] = "Only JPG, JPEG, PNG, GIF, & PDF files are allowed.";
+				$_SESSION['errorMsg'] = "Only JPG, JPEG, PNG, GIF, DOC, PPT & PDF files are allowed.";
 				header('location: ../client/create.php');
 				return;
 			}
 
-			if ($_FILES["file"]["size"] > 10000000) { #10,000,000
-				$_SESSION['errorMsg'] = "File is too large (Over 50 MB).";
+			if ($_FILES["file"]["size"] > 5000000) { #5,000,000
+				$_SESSION['errorMsg'] = "File is too large (Over 5 MB).";
 				header('location: ../client/create.php');
 				return;
 			}
